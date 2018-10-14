@@ -8,6 +8,7 @@ from PIL import Image
 from time import sleep
 from subprocess import call
 import pygame
+import random
 
 def compare():
    camera.resolution = (streamWidth, streamHeight)
@@ -19,35 +20,59 @@ def compare():
    stream.close()
    return im, buffer
 
+def triggerSurprise():
+    randomSoundFile = "sfx/chainsaw.wav"
+    
+    if soundTheme == entranceSounds:
+        randomSoundFile = random.choice(entranceSounds)
+    elif soundTheme == jumpScareSounds:
+        randomSoundFile = random.choice(jumpScareSounds)
+    elif soundTheme == randomSounds:
+        randomSoundFile = random.choice(randomSounds)
+    
+    sound = pygame.mixer.Sound(randomSoundFile)
+    sound.play()
+    sleep(sound.get_length() + postSurpriseDelay)
 
+#sound effect lists
+entranceSounds = ["sfx/haunted_mansion_2.wav"]
+jumpScareSounds = ["sfx/chainsaw.wav", "sfx/witch.wav"]
+randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav"]
+
+#set the soundTheme appropriate to the placement of the camera
+#soundTheme = entranceSounds
+soundTheme = jumpScareSounds
+#soundTheme = randomSounds
+
+#motion vars
 streamWidth = 320
 streamHeight = 180
 streamTotalPixels = streamWidth * streamHeight
-
-difference = 20
+difference = 5
 pixelThreshold = streamTotalPixels * 0.01
+sleepBetweenFrames = 0.1
+postSurpriseDelay = 3
 
-sleepBetweenFrames = 0.4
-startupDelay=3
-
+#camera setup
 camera = PiCamera()
 camera.rotation = 180
 camera.resolution = (1920,1080)
 camera.start_preview(alpha=128)
 
+#brief startup delay to move out of the way etc...
+startupDelay=3
 sleep(startupDelay)
 
-timestamp = time.time()
-
+#create the first image
 image1, buffer1 = compare()
 
+#init audio
 pygame.mixer.init()
 
 while (True):
 
     sleep(sleepBetweenFrames)
     image2, buffer2 = compare()
-    timestamp = time.time()
 
     changedpixels = 0
     for x in range(0, streamWidth):
@@ -57,8 +82,9 @@ while (True):
                 changedpixels += 1
 
     if changedpixels > pixelThreshold:
-        pygame.mixer.music.load("sfx/haunted_mansion_2.wav")
-        pygame.mixer.music.play()
-        sleep(30)
-    image1 = image2
-    buffer1 = buffer2 
+        triggerSurprise()
+        image1, buffer1 = compare()
+        image2, buffer2 = compare()
+    else:
+        image1 = image2
+        buffer1 = buffer2 
