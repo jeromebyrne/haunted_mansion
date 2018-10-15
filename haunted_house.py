@@ -40,16 +40,16 @@ jumpScareSounds = ["sfx/chainsaw.wav", "sfx/witch.wav"]
 randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav"]
 
 #set the soundTheme appropriate to the placement of the camera
-#soundTheme = entranceSounds
-soundTheme = jumpScareSounds
+soundTheme = entranceSounds
+#soundTheme = jumpScareSounds
 #soundTheme = randomSounds
 
 #motion vars
 streamWidth = 320
 streamHeight = 180
 streamTotalPixels = streamWidth * streamHeight
-difference = 5
-pixelThreshold = streamTotalPixels * 0.01
+difference = 15
+pixelThreshold = streamTotalPixels * 0.05
 sleepBetweenFrames = 0.1
 postSurpriseDelay = 3
 
@@ -57,7 +57,7 @@ postSurpriseDelay = 3
 camera = PiCamera()
 camera.rotation = 180
 camera.resolution = (1920,1080)
-camera.start_preview(alpha=128)
+camera.start_preview(alpha=200)
 
 #brief startup delay to move out of the way etc...
 startupDelay=3
