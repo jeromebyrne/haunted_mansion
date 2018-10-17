@@ -29,20 +29,24 @@ def triggerSurprise():
         randomSoundFile = random.choice(jumpScareSounds)
     elif soundTheme == randomSounds:
         randomSoundFile = random.choice(randomSounds)
+    elif soundTheme == mixSounds:
+    	randomSoundFile = random.choice(mixSounds)
     
     sound = pygame.mixer.Sound(randomSoundFile)
     sound.play()
     sleep(sound.get_length() + postSurpriseDelay)
 
 #sound effect lists
-entranceSounds = ["sfx/haunted_mansion_2.wav"]
-jumpScareSounds = ["sfx/chainsaw.wav", "sfx/witch.wav"]
-randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav"]
+entranceSounds = ["sfx/haunted_mansion_2.wav", "sfx/not_a_game.wav", "sfx/prepare.wav", "sfx/stay_out.wav"]
+jumpScareSounds = ["sfx/chainsaw.wav", "sfx/witch.wav", "sfx/incoherent.wav"]
+randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav", "sfx/don_julio.wav", "sfx/incoherent_2.wav", "sfx/leave_here.wav"]
+mixSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav","sfx/haunted_mansion_2.wav", "sfx/not_a_game.wav", "sfx/prepare.wav", "sfx/stay_out.wav","sfx/chainsaw.wav", "sfx/witch.wav","sfx/don_julio.wav", "sfx/incoherent_2.wav", "sfx/leave_here.wav"]
 
 #set the soundTheme appropriate to the placement of the camera
-soundTheme = entranceSounds
+#soundTheme = entranceSounds
 #soundTheme = jumpScareSounds
 #soundTheme = randomSounds
+soundTheme = mixSounds
 
 #motion vars
 streamWidth = 320
@@ -57,7 +61,7 @@ postSurpriseDelay = 3
 camera = PiCamera()
 camera.rotation = 180
 camera.resolution = (1920,1080)
-camera.start_preview(alpha=200)
+#camera.start_preview(alpha=200)
 
 #brief startup delay to move out of the way etc...
 startupDelay=3
