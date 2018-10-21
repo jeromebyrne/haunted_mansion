@@ -39,8 +39,8 @@ def triggerSurprise():
 #sound effect lists
 entranceSounds = ["sfx/haunted_mansion_2.wav", "sfx/not_a_game.wav", "sfx/prepare.wav", "sfx/stay_out.wav"]
 jumpScareSounds = ["sfx/chainsaw.wav", "sfx/witch.wav", "sfx/incoherent.wav"]
-randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav", "sfx/don_julio.wav", "sfx/incoherent_2.wav", "sfx/leave_here.wav"]
-mixSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav","sfx/haunted_mansion_2.wav", "sfx/not_a_game.wav", "sfx/prepare.wav", "sfx/stay_out.wav","sfx/chainsaw.wav", "sfx/witch.wav","sfx/don_julio.wav", "sfx/incoherent_2.wav", "sfx/leave_here.wav"]
+randomSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav", "sfx/incoherent_2.wav", "sfx/leave_here.wav"]
+mixSounds = ["sfx/hounds.wav", "sfx/dont_lose_your_head.wav", "sfx/rosie.wav","sfx/haunted_mansion_2.wav", "sfx/not_a_game.wav", "sfx/prepare.wav", "sfx/stay_out.wav","sfx/chainsaw.wav", "sfx/witch.wav","sfx/incoherent_2.wav", "sfx/leave_here.wav"]
 
 #set the soundTheme appropriate to the placement of the camera
 #soundTheme = entranceSounds
